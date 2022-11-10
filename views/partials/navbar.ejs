@@ -1,0 +1,31 @@
+<nav class="navbar  sticky-top navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Hospitals</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="/hospitals/new">New Hospital</a>
+                <a class="nav-link" href="/hospitals">All Hospitals</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+
+                <form action="/hospitals/search" method="GET" class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Name, Category......" name="search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+
+                <% if(!currentUser) {%>
+                    <a href="/login" class="nav-link">Login</a>
+                    <a href="/register" class="nav-link">Register</a>
+                    <% } else { %>
+                        <a href="/logout" class="nav-link">Logout</a>
+                        <% } %>
+            </div>
+        </div>
+    </div>
+</nav>

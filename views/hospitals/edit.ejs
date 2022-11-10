@@ -1,0 +1,102 @@
+<% layout('layout/boilerPlate') %>
+
+    <div class="row">
+        <h1 class="text-center"> Edit a Hospital </h1>
+        <div class="col-md-6 offset-md-3">
+
+            <form action="/hospitals/<%= hospital._id %>?_method=PUT" method="POST" novalidate class="validation-form">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="hospital[name]" value="<%= hospital.name %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="number" class="form-control" name="hospital[phone]" value="<%= hospital.phone %>"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="website" class="form-label">Website</label>
+                    <input type="text" class="form-control" name="hospital[website]" value="<%= hospital.website %>"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" name="hospital[location]" value="<%= hospital.location %>"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="hospital[description]"
+                        required><%= hospital.description %></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="beds" class="form-label">Beds</label>
+                    <input type="number" class="form-control" name="hospital[beds]" value="<%= hospital.beds %>"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="owner" class="form-label">Owner</label>
+                    <select class="form-select" name="hospital[owner]">
+                        <% for(let owner of owners){ %>
+                            <option value="<%=owner%>" <%=hospital.owner===owner ? 'selected' : '' %>>
+                                <%=owner%>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image Url</label>
+                    <input type="string" class="form-control" id="image" name="hospital[image]"
+                        value="<%= hospital.image %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <input type="text" class="form-control" name="hospital[category]" value="<%= hospital.category %>"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary">Update Hospital</button>
+                </div>
+
+            </form>

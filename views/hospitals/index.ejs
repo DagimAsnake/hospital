@@ -1,0 +1,77 @@
+<% layout('layout/boilerPlate') %>
+    <link rel="stylesheet" href="/stylesheets/page.css">
+
+    <h1>
+        <%= owner %> Hospitals
+    </h1>
+    <div class="col-md-12">
+        <% if(nohospital !==null) {%>
+            <h3>
+                <%= nohospital %>
+            </h3>
+            <% } %>
+    </div>
+    <ul>
+        <% for(let hospital of hospitals ) { %>
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-fluid" alt=".." src="<%=hospital.image%>">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+
+                                <a href="/hospitals/<%= hospital.id %>" class="link-dark">
+                                    <%= hospital.name %>
+                                </a>
+                            </h5>
+                            <p>
+                                <%= hospital.category %>
+                            </p>
+                            <p class="card-text">+251
+                                <%= hospital.phone %>
+                            </p>
+                            <p class="card-text">
+                                <%= hospital.location %>
+                            </p>
+                            <p class="card-text">
+                                <%= hospital.description %>
+                            </p>
+                            <a class="btn btn-primary" href="/hospitals/<%=hospital.id%>">
+                                view more
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </ul>
+    <% if(nohospital===null) {%>
+        <div class="d-flex justify-content-center align-items-center mb-2">
+            <section class="pagination">
+                <% if(currentPage !==1 && previousPage !==1) {%>
+                    <a href="?page=1">1</a>
+                    <% } %>
+                        <% if(hasPreviousPage) {%>
+                            <a href="?page=<%= previousPage %>">
+                                <%= previousPage %>
+                            </a>
+                            <% } %>
+                                <a href="?page=<%= currentPage %>" class="active">
+                                    <%= currentPage %>
+                                </a>
+                                <% if(hasNextPage) {%>
+                                    <a href="?page=<%= nextPage %>">
+                                        <%= nextPage %>
+                                    </a>
+                                    <% } %>
+                                        <% if(lastPage !==currentPage && nextPage !==lastPage) {%>
+                                            <a href="?page=<%= lastPage %>">
+                                                <%= lastPage %>
+                                            </a>
+                                            <% } %>
+            </section>
+        </div>
+        <% } %>

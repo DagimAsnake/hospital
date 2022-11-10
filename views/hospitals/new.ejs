@@ -1,0 +1,95 @@
+<% layout('layout/boilerPlate') %>
+
+    <div class="row">
+        <h1 class="text-center"> New Hospital </h1>
+        <div class="col-md-6 offset-md-3">
+
+            <form action="/hospitals" method="POST" novalidate class="validation-form">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="hospital[name]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="number" class="form-control" name="hospital[phone]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="website" class="form-label">Website</label>
+                    <input type="text" class="form-control" name="hospital[website]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" name="hospital[location]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="hospital[description]" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="beds" class="form-label">Beds</label>
+                    <input type="number" class="form-control" name="hospital[beds]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="owner" class="form-label">Owner</label>
+                    <select class="form-select" name="hospital[owner]">
+                        <% for(let owner of owners){ %>
+                            <option value="<%=owner%>">
+                                <%=owner%>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <input type="text" class="form-control" name="hospital[category]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image Url</label>
+                    <input type="string" class="form-control" id="image" name="hospital[image]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-success">Add Hospital</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
