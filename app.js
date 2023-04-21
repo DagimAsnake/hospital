@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV != 'production') {
+    require('dotenv').config()
+}
+
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -19,7 +23,12 @@ const UserRouter = require('./routes/user')
 const HospitalRouter = require('./routes/hospital')
 const ReviewRouter = require('./routes/review')
 
-mongoose.connect('mongodb://localhost:27017/hospital', { useNewUrlParser: true, useUnifiedTopology: true })
+// const dbUrl = 'mongodb://localhost:27017/hospital'
+const dbUrl = process.env.DB_URL
+
+const MongoStore = require('connect-mongo')
+
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('Database is connected')
     })
@@ -34,6 +43,17 @@ app.engine('ejs', ejsmate)
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
+
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret: 'thisisthesecret',
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+})
 
 const sessionConfig = {
     secret: 'thisissecrete',
